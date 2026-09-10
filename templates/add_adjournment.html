@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Adjournment</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="dashboard-bg">
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>⏳ Adjournments</h1>
+        <a href="/judge-dashboard" class="logout-btn">⬅ Back</a>
+    </div>
+
+    <!-- ADD ADJOURNMENT -->
+    <div class="form-card">
+        <h3 style="text-align:center;">Add Adjournment</h3>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="post">
+
+            <div class="form-group">
+                <label>Hearing ID</label>
+                <input type="number" name="hearing" required>
+            </div>
+
+            <div class="form-group">
+                <label>Reason</label>
+                <select name="reason" required>
+                    <option value="">-- Select Reason --</option>
+                    <option value="1">Judge Unavailable</option>
+                    <option value="2">Lawyer Absence</option>
+                    <option value="3">Evidence Pending</option>
+                    <option value="4">Administrative Delay</option>
+                    <option value="5">External Reason</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Adjournment Date</label>
+                <input type="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label>Remarks</label>
+                <input type="text" name="remarks" placeholder="Optional">
+            </div>
+
+            <button class="primary-btn">➕ Add Adjournment</button>
+        </form>
+    </div>
+
+    <!-- VIEW ADJOURNMENTS -->
+    <div class="form-card">
+        <h3 style="text-align:center;">📋 Adjournment History</h3>
+
+        {% if adjournments %}
+        <table class="styled-table">
+            <tr>
+                <th>ID</th>
+                <th>Case ID</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Remarks</th>
+            </tr>
+            {% for a in adjournments %}
+            <tr>
+                <td>{{ a.adjournment_id }}</td>
+                <td>{{ a.case_id }}</td>
+                <td>{{ a.adjournment_date }}</td>
+                <td>{{ a.reason }}</td>
+                <td>{{ a.remarks or "-" }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p style="text-align:center;">No adjournments recorded.</p>
+        {% endif %}
+    </div>
+
+</div>
+</body>
+</html>

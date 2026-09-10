@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Assigned Cases</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-bg">
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>👨‍⚖️ My Assigned Cases</h1>
+        <a href="/judge-dashboard" class="logout-btn">⬅ Back</a>
+    </div>
+
+    <div class="form-card">
+        <table class="styled-table">
+            <tr>
+                <th>Case ID</th>
+                <th>Case Type</th>
+                <th>Filing Date</th>
+                <th>Status</th>
+            </tr>
+
+            {% if cases %}
+                {% for c in cases %}
+                <tr>
+                    <td>{{ c.case_id }}</td>
+                    <td>{{ c.case_type }}</td>
+                    <td>{{ c.filing_date }}</td>
+                    <td>{{ c.current_status }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No cases assigned to you</td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

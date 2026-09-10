@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Judge Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-bg">
+
+<div class="dashboard-container">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h1>👨‍⚖️ Judge Dashboard</h1>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="dashboard-grid">
+
+        <!-- My Cases -->
+        <a href="/judge-cases" class="dashboard-card">
+            <div class="icon">📁</div>
+            <h3>My Cases</h3>
+            <p>View cases assigned to you</p>
+        </a>
+
+        <!-- Add Hearing -->
+        <a href="/add-hearing" class="dashboard-card">
+            <div class="icon">📅</div>
+            <h3>Add Hearing</h3>
+            <p>Schedule and update hearings</p>
+        </a>
+
+        <!-- Add Adjournment -->
+        <a href="/add-adjournment" class="dashboard-card">
+            <div class="icon">⏳</div>
+            <h3>Add Adjournment</h3>
+            <p>Record adjournments & reasons</p>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

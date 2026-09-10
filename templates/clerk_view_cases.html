@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Cases</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>📂 Case Records</h1>
+        <a href="/clerk-dashboard" class="logout-btn">⬅ Back</a>
+    </div>
+
+    <table class="styled-table">
+        <tr>
+            <th>Case ID</th>
+            <th>Type</th>
+            <th>Filing Date</th>
+            <th>Status</th>
+            <th>Judge</th>
+        </tr>
+
+        {% for c in cases %}
+        <tr>
+            <td>{{ c.case_id }}</td>
+            <td>{{ c.case_type }}</td>
+            <td>{{ c.filing_date }}</td>
+            <td>{{ c.current_status }}</td>
+            <td>{{ c.judge_name or "Not Assigned" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+</body>
+</html>

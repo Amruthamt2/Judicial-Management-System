@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Cases</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-bg">
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>📂 All Cases</h1>
+        <a href="/admin-dashboard" class="logout-btn">⬅ Back</a>
+    </div>
+
+    <div class="form-card">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Case ID</th>
+                    <th>Type</th>
+                    <th>Filing Date</th>
+                    <th>Status</th>
+                    <th>Assigned Judge</th>
+                    <th>Update Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in cases %}
+                <tr>
+                    <td>{{ c.case_id }}</td>
+                    <td>{{ c.case_type }}</td>
+                    <td>{{ c.filing_date }}</td>
+                    <td>{{ c.current_status }}</td>
+                    <td>{{ c.judge_name or "Not Assigned" }}</td>
+                    <td>
+                        <form method="post" action="/update-case-status">
+                            <input type="hidden" name="case_id" value="{{ c.case_id }}">
+                            <select name="status" required>
+                                <option value="">Select</option>
+                                <option value="Filed">Filed</option>
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                            <button class="transparent-btn" style="margin-top:8px;padding:8px;">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

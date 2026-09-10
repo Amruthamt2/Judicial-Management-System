@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Hearing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+<div class="dashboard-container">
+
+    <!-- ADD HEARING -->
+    <div class="form-card">
+        <h2>⚖️ Add Hearing</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Case ID</label>
+                <input type="number" name="case" required>
+            </div>
+
+            <div class="form-group">
+                <label>Hearing Date</label>
+                <input type="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label>Outcome</label>
+                <select name="outcome" required>
+                    <option value="">-- Select --</option>
+                    <option value="Adjourned">Adjourned</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Next Hearing Date</label>
+                <input type="date" name="next">
+            </div>
+
+            <button class="primary-btn">➕ Add Hearing</button>
+        </form>
+    </div>
+
+    <!-- VIEW & UPDATE HEARINGS -->
+    <div class="form-card">
+        <h2>📅 View Hearings</h2>
+
+        {% if hearings %}
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Hearing ID</th>
+                    <th>Case ID</th>
+                    <th>Hearing Date</th>
+                    <th>Next Hearing</th>
+                    <th>Outcome</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for h in hearings %}
+                <tr>
+                    <td>{{ h.hearing_id }}</td>
+                    <td>{{ h.case_id }}</td>
+                    <td>{{ h.hearing_date }}</td>
+                    <td>{{ h.next_hearing_date or "-" }}</td>
+                    <td>{{ h.outcome }}</td>
+
+                    <!-- UPDATE COLUMN -->
+                    <td>
+                        <form method="POST" action="/update-hearing-outcome">
+                            <input type="hidden" name="hearing_id" value="{{ h.hearing_id }}">
+                            <select name="outcome" required>
+                                <option value="Adjourned">Adjourned</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                            <button class="transparent-btn">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p style="text-align:center;">No hearings found.</p>
+        {% endif %}
+
+        <a href="/judge-dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+
+</div>
+</body>
+</html>

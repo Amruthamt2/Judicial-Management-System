@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Judicial Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-bg">
+
+<div class="login-card">
+    <h2>⚖️ Judicial System</h2>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+        <label>Role</label>
+        <select name="role" required>
+            <option value="">-- Select Role --</option>
+            <option value="Admin">Admin</option>
+            <option value="Judge">Judge</option>
+            <option value="Clerk">Clerk</option>
+        </select>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+</body>
+</html>

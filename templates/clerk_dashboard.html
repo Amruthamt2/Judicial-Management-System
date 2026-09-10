@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clerk Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>🧾 Clerk Dashboard</h1>
+        <a href="/logout" class="logout-btn">🚪 Logout</a>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <a href="/clerk-view-cases" class="dashboard-card">
+            <div class="icon">📂</div>
+            <h3>View Cases</h3>
+            <p>View case details and assigned judges</p>
+        </a>
+
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-bg">
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>📊 Case Analytics</h1>
+        <a href="/admin-dashboard" class="logout-btn">⬅ Back</a>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+            <div class="icon">📁</div>
+            <h3>Total Cases</h3>
+            <p>{{ duration|length }} Registered</p>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="icon">⏱</div>
+            <h3>Case Duration</h3>
+            <p>Tracking hearing delays</p>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="icon">⚠️</div>
+            <h3>Adjournments</h3>
+            <p>Delay reasons analysis</p>
+        </div>
+
+    </div>
+
+    <div class="form-card" style="margin-top:40px">
+        <h3>⏱ Case Duration</h3>
+        <table class="styled-table">
+            <tr>
+                <th>Case ID</th>
+                <th>Total Days</th>
+            </tr>
+            {% for d in duration %}
+            <tr>
+                <td>{{ d[0] }}</td>
+                <td>{{ d[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

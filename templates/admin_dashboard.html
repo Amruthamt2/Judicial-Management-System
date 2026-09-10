@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<div class="dashboard-container">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h1>👑 Admin Dashboard</h1>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="dashboard-grid">
+
+        <!-- Add Case -->
+        <a href="/add-case" class="dashboard-card">
+            <div class="icon">➕</div>
+            <h3>Add Case</h3>
+            <p>Register and assign new cases</p>
+        </a>
+
+        <!-- View Cases -->
+        <a href="/view-cases" class="dashboard-card">
+            <div class="icon">📁</div>
+            <h3>View Cases</h3>
+            <p>View all registered cases with judge assignment</p>
+        </a>
+
+        <!-- Analytics REMOVED -->
+        <!-- Judges REMOVED -->
+        <!-- Courts REMOVED -->
+
+    </div>
+
+</div>
+
+</body>
+</html>

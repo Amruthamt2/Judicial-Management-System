@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Case</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<div class="dashboard-container">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h1>➕ Add New Case</h1>
+        <a href="/admin-dashboard" class="logout-btn">⬅ Back</a>
+    </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert {{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Form Card -->
+    <div class="form-card">
+        <form method="post">
+
+            <div class="form-group">
+                <label>📂 Case Type</label>
+                <input type="text" name="type" placeholder="Civil / Criminal / Family" required>
+            </div>
+
+            <div class="form-group">
+                <label>📅 Filing Date</label>
+                <input type="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label>📌 Current Status</label>
+                <select name="status" required>
+                    <option value="">-- Select Status --</option>
+                    <option value="Filed">Filed</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <!-- Court ID REMOVED -->
+
+            <div class="form-group">
+                <label>👨‍⚖️ Judge ID</label>
+                <input type="number" name="judge" placeholder="e.g. 1" required>
+            </div>
+
+            <button type="submit" class="primary-btn">✅ Add Case</button>
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
